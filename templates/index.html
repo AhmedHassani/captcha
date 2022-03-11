@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Icons font CSS-->
+    <link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="/static/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">اضافه درجه طالب</h2>
+                    <form method="POST" action="/addsd">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">الاسم الكامل</label>
+                                    <input class="input--style-4" type="text" name="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">ايميل الطالب</label>
+                                    <input class="input--style-4" type="text" name="id">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده نضم تشغيل </label>
+                                    <input class="input--style-4" type="text" name="os">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده امنيه بيانات  </label>
+                                    <input class="input--style-4" type="text" name="security">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده الويب  </label>
+                                    <input class="input--style-4" type="text" name="web">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده الشبكات </label>
+                                    <input class="input--style-4" type="text" name="network">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده الربوت </label>
+                                    <input class="input--style-4" type="text" name="robot">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده الذكاء الصناعي  </label>
+                                    <input class="input--style-4" type="text" name="ai">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">تقدير الماده  معالجه صور </label>
+                                    <input class="input--style-4" type="text" name="image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">التقدير</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="avg">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>ضعيف</option>
+                                    <option>متوسط</option>
+                                    <option>جيد</option>
+                                    <option>جيد جدا</option>
+                                    <option>امتياز</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">الحاله</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="state">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option> ناجح</option>
+                                    <option> راسب</option>
+                                    <option> مكمل</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">الفرع</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="branch">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>برمجيات</option>
+                                    <option> الذكاء</option>
+                                    <option> الامنيه</option>
+                                    <option> نضم تشغيل</option>
+                                    <option>شبكات</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">اضافه  طالب</h2>
+                    <form method="POST" action="/adds">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">الاسم الكامل</label>
+                                    <input class="input--style-4" type="text" name="name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">ايميل الطالب</label>
+                                    <input class="input--style-4" type="text" name="username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">باسورد</label>
+                                    <input class="input--style-4" type="text" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

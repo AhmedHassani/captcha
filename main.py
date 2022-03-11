@@ -1,4 +1,5 @@
 import os
+import sqlite3
 
 from PIL import Image, ImageDraw, ImageFont
 from random import randint, random
@@ -6,6 +7,35 @@ from flask import Flask, render_template,redirect, request, url_for,session,flas
 app = Flask(__name__)
 app.secret_key = "abc"
 code = "0"
+email =""
+
+def auth(username,password):
+    conn = sqlite3.connect('db.db')
+    cur = conn.cursor()
+    data = cur.execute("SELECT * from students")
+    for d in data.fetchall():
+        if(d[1]==username and d[2]==password):
+            return True
+        else:
+            return False
+def auth_admin(username,password):
+    conn = sqlite3.connect('db.db')
+    cur = conn.cursor()
+    data = cur.execute("SELECT * from admin")
+    for d in data.fetchall():
+        if(d[0]==username and d[1]==password):
+            return True
+        else:
+            return False
+#
+def get_degrees(id):
+    conn = sqlite3.connect('db.db')
+    cur = conn.cursor()
+    data = cur.execute("SELECT * from degrees WHERE id= '"+id+"'")
+    data = data.fetchall()[0]
+    return  data
+
+
 def get_random_color():
     return randint(120, 200), randint(120, 200), randint(120, 200)
 
@@ -48,22 +78,101 @@ def home():
     index = randint(0, 1000)
     img = img_list[index]
     global code
+
     code = img
     code=code.replace(".jpg","")
     path = os.path.join("captcha", img)
     return render_template("login_sudent.html",data=path)
+
 @app.route('/logins', methods=['POST'])
 def login_student():
+    username = request.form['username']
+    password = request.form['password']
+    global email
+    email=username
+    cap_code = request.form['cap']
+    cap_code = str(cap_code)
+    if (auth(username,password)==True) and (cap_code.upper()==code.upper()):
+        return redirect(url_for('show'))
+    return redirect(url_for('home'))
+
+@app.route('/show', methods=['GET'])
+def show():
+    data = get_degrees(email)
+    return render_template("show.html",data=data)
+
+@app.route('/login-admin', methods=['GET'])
+def login_admin():
+    img_list = os.listdir("static/captcha")
+    index = randint(0, 1000)
+    img = img_list[index]
+    global code
+    code = img
+    code=code.replace(".jpg","")
+    path = os.path.join("captcha", img)
+    return render_template("login_admin.html",data=path)
+
+@app.route('/logina', methods=['POST'])
+def admin_auth():
     username = request.form['username']
     password = request.form['password']
     cap_code = request.form['cap']
     cap_code = str(cap_code)
     print(username)
     print(password)
-    print(cap_code.upper(),code.upper())
-    return redirect(url_for('show'))
-@app.route('/show', methods=['GET'])
-def show():
-    return render_template("show.html")
+    print(cap_code)
+    print(code)
+    if (auth_admin(username,password)==True) and (cap_code.upper()==code.upper()):
+        return redirect(url_for('dashbord'))
+    return redirect(url_for('login_admin'))
+
+@app.route('/dashbord', methods=['GET'])
+def dashbord():
+    return render_template("index.html")
+
+@app.route('/adds', methods=['POST'])
+def add_student():
+    conn = sqlite3.connect('db.db')
+    name = request.form['name']
+    username = request.form['username']
+    password = request.form['password']
+    cur = conn.cursor()
+    sql = ''' INSERT INTO students(name,email,pass)
+                  VALUES(?,?,?) '''
+    cur = conn.cursor()
+    params = (name, username,password)
+    cur.execute(sql,params)
+    conn.commit()
+    conn.close()
+    return redirect(url_for('dashbord'))
+
+@app.route('/addsd', methods=['POST'])
+def add_student_d():
+    conn = sqlite3.connect('db.db')
+    id = request.form['id']
+    os = request.form['os']
+    security = request.form['security']
+    web = request.form['web']
+    network = request.form['network']
+    robot = request.form['robot']
+    ai = request.form['ai']
+    image = request.form['image']
+    avg = request.form['avg']
+    state = request.form['state']
+    name = request.form['name']
+    branch = request.form['branch']
+    stage = "الرابعه"
+    cur = conn.cursor()
+    sql = ''' INSERT INTO degrees(id,os,security,web,network,robot,ai,image,avg,state,name,branch,stage)
+                  VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?) '''
+    cur = conn.cursor()
+    params = (id,os,security,web,network,robot,ai,image,avg,state,name,branch,stage)
+    cur.execute(sql,params)
+    conn.commit()
+    conn.close()
+    return redirect(url_for('dashbord'))
+
+
+
 if __name__=="__main__":
     app.run(debug=True)

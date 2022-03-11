@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>HTML5 Login Form with validation Example</title>
+  <title>admin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="/static/style.css">
 
@@ -10,21 +10,23 @@
 <body>
 <!-- partial:index.partial.html -->
 <div id="login-form-wrap">
-  <h2>Login</h2>
-  <form id="login-form">
+  <h2>Admin Dashbord</h2>
+  <form id="login-form" method="post"  action="/logina">
     <p>
     <input type="text" id="username" name="username" placeholder="Username" required><i class="validation"><span></span><span></span></i>
     </p>
     <p>
-    <input type="email" id="email" name="email" placeholder="Email Address" required><i class="validation"><span></span><span></span></i>
+    <input type="password" id="password" name="password" placeholder="" required><i class="validation"><span></span><span></span></i>
     </p>
       <p>
-        <img src="{{url_for('static', filename=data)}}" /> <input type="text"  name="cap"  required>
+        <img src="{{url_for('static', filename=data)}}" /> <input type="text" name="cap"  name="logina"  required>
       </p>
     <p>
     <input type="submit" id="login" value="Login">
     </p>
   </form>
+  <div id="create-account-wrap">
+  </div>
 </div>
 </body>
 </html>
